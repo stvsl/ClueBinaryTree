@@ -2,7 +2,9 @@
 
 - BinaryTree
 
-  - iBinaryTree
+  - iBinaryTreeMaster
+  - iBinaryTreeOperate
+  - iBinaryTreeUnique
   - binaryNode
   - binaryTree
 
@@ -12,3 +14,5 @@
 
   - clueBinaryNode
   - clueBinaryTree
+
+- App

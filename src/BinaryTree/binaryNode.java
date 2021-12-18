@@ -1,23 +1,26 @@
 package BinaryTree;
 
-public class BinaryNode<T> {
+/***
+ * 标准二叉树结点类
+ */
+public class binaryNode<T> {
     T data;
-    BinaryNode<T> left;
-    BinaryNode<T> right;
+    binaryNode<T> left;
+    binaryNode<T> right;
 
-    protected BinaryNode(){
+    protected binaryNode(){
         this.data = null;
         this.left = null;
         this.right = null;
     }
 
-    protected BinaryNode(T data) {
+    protected binaryNode(T data) {
         this.data = data;
         this.left = null;
         this.right = null;
     }
 
-    protected BinaryNode(T data, BinaryNode<T> left, BinaryNode<T> right){
+    protected binaryNode(T data, binaryNode<T> left, binaryNode<T> right){
         this.data = data;
         this.left = left;
         this.right = right;
