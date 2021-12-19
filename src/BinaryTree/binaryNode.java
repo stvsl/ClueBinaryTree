@@ -4,9 +4,9 @@ package BinaryTree;
  * 标准二叉树结点类
  */
 public class binaryNode<T> {
-    T data;
-    binaryNode<T> left;
-    binaryNode<T> right;
+    public T data;
+    public binaryNode<T> left;
+    public binaryNode<T> right;
 
     protected binaryNode(){
         this.data = null;

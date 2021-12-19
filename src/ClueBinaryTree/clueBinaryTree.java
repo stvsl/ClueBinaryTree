@@ -1,29 +1,42 @@
 package ClueBinaryTree;
 import BinaryTree.binaryNode;
-import BinaryTree.iBinaryTreeMuster;
+import BinaryTree.binaryTree;
 
-public class clueBinaryTree<T> implements iBinaryTreeMuster<T>,iClueBinaryTreeUnique<T>{
+public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeUnique<T>{
+    
+    clueBinaryNode<T> root = null;
+
+    clueBinaryTree(binaryTree<T> tree) {
+        initialize(tree);
+    }
+
+    /***
+     * 线索二叉树初始化 <br>
+     * 通过先序对其进行初始化
+     * 
+     * @param tree 要线索化的树
+     */
+    public void initialize(binaryTree<T> tree){
+        
+        
+    }
 
     @Override
     public void toClueBinaryTreePre() {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void toClueBinaryTreeIn() {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void toClueBinaryTreePost() {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
     public binaryNode<T> getParent(binaryNode<T> child) {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 
@@ -35,8 +48,7 @@ public class clueBinaryTree<T> implements iBinaryTreeMuster<T>,iClueBinaryTreeUn
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.root == null;
     }
 
     @Override

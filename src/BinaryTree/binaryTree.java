@@ -8,12 +8,12 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
        binaryNode<T> root = null;
 
        // 无参构造
-       binaryTree() {
+       public binaryTree() {
    
        }
    
        // 序列构造
-       binaryTree(T[] source) {
+       public binaryTree(T[] source) {
            this.root = prebuild(source);
        }
    
