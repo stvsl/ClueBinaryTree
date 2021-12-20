@@ -33,9 +33,13 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             this.root.left = initialize(tree.root.left);
             this.root.right = initialize(tree.root.right);
         }
-        System.exit(0);
     }
 
+    /**
+     * 线索二叉树初始化递归单元
+     * @param p
+     * @return
+     */
     private clueBinaryNode<T> initialize(binaryNode<T> p) {
         clueBinaryNode<T> tmp = new clueBinaryNode<T>(p);
         if(p.left != null){
@@ -47,24 +51,40 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         return tmp;
     }
 
-    @Override
     public void toClueBinaryTreePre() {
         this.toClueBinaryTreePre(this.root);
+        preNode.isright = false;
+        preNode = null;
     }
 
-    //先序递归线索化
+    //先序线索化递归执行单元
     private void toClueBinaryTreePre(clueBinaryNode<T> p) {
         if(p != null){
+            //先序线索化时会因p的左右子树发生变化导致进入死循环,所以需要先保存p的左右孩子
+            clueBinaryNode<T> tmpl = p.left;
+            clueBinaryNode<T> tmpr = p.right;
             //如果其左子树为null时指向其前驱
             if(p.left == null){
                 p.left = preNode;
                 p.isleft = false;
             }
+            //前一个结点的右孩子如果为null则其现在可以更正为其后继结点
+            //此时,前一个结点的后继结点就是p
+            System.out.println(preNode != null && preNode.right == null);
+            if(preNode != null && preNode.right == null){
+                preNode.right  = p;
+                preNode.isright = false;
+            }
+            preNode = p;
+            //继续对原来p的左子树线索化
+            this.toClueBinaryTreePre(tmpl);
+            //然后对原来p的右子树线索化
+            this.toClueBinaryTreePre(tmpr);
         }
     }
 
-    @Override
     public void toClueBinaryTreeIn() {
+
     }
 
     @Override

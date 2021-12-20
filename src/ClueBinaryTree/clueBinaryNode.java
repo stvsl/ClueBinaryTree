@@ -77,6 +77,7 @@ public class clueBinaryNode<T> {
 
     /***
      * 判断是否是叶子结点
+     * @warning 请确认线索二叉树已经线索化!!!
      */
     public boolean isLeaf() {
         // 如果是叶子结点,则说明其左右孩子为其前驱和后继,此时不管其前驱和后继是否为null,其isleft和isright此时均一定为false
