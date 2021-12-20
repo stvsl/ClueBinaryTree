@@ -1,6 +1,7 @@
-import java.util.Scanner;
+// import java.util.Scanner;
 
 import BinaryTree.binaryTree;
+import ClueBinaryTree.clueBinaryTree;
 
 public class App {
     // private static Scanner reader;
@@ -13,5 +14,7 @@ public class App {
         originaltree.preorder();
         originaltree.inorder();
         originaltree.postorder();
+        clueBinaryTree<String> clueTree = new clueBinaryTree<String>(originaltree);
+        clueTree.initialize(originaltree);
     }
 }

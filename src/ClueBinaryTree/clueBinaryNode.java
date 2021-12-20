@@ -14,7 +14,7 @@ import BinaryTree.binaryNode;
  * @date 2021.12.18
  */
 
-public class clueBinaryNode<T> extends binaryNode<T> {
+public class clueBinaryNode<T> {
 
     // 数据存储
     T data;
@@ -42,7 +42,7 @@ public class clueBinaryNode<T> extends binaryNode<T> {
      * @param data
      */
     clueBinaryNode(T data) {
-        super(data);
+        this.data = data;
         this.isleft = true;
         this.isright = true;
     }
@@ -55,7 +55,7 @@ public class clueBinaryNode<T> extends binaryNode<T> {
      * @param right
      */
     clueBinaryNode(T data, clueBinaryNode<T> left, clueBinaryNode<T> right) {
-        super(data);
+        this.data = data;
         this.left = left;
         this.right = right;
         this.isleft = true;
@@ -68,7 +68,7 @@ public class clueBinaryNode<T> extends binaryNode<T> {
      * @param node 原有结点
      */
     clueBinaryNode(binaryNode<T> node) {
-        super(node.data);
+        this.data = node.data;
         this.left = null;
         this.right = null;
         this.isleft = true;

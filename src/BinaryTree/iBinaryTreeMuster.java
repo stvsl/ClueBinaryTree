@@ -8,19 +8,6 @@ package BinaryTree;
  ****************************************************************/
 
 public interface iBinaryTreeMuster<T> {
-     /***
-      * 查询child的父节点
-      */
-     binaryNode<T> getParent(binaryNode<T> child);
-
-     /***
-      * 查询孩子结点
-      * @param parent    父亲
-      * @param isLChild  查询目标是否是它的左孩子 
-      *                       true 是
-      *                       false 不是
-      */
-     binaryNode<T> getChild(binaryNode<T> parent, boolean isLChild);
  
      /***
       * 判空

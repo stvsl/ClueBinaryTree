@@ -4,8 +4,8 @@ import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<T> ,iBinaryTreeUnique<T>{
-       /* 此树为二叉链表实现 */
-       binaryNode<T> root = null;
+    /* 此树为二叉链表实现 */
+       public binaryNode<T> root = null;
 
        // 无参构造
        public binaryTree() {
