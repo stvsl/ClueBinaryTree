@@ -51,6 +51,7 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         return tmp;
     }
 
+    @Override
     public void toClueBinaryTreePre() {
         this.toClueBinaryTreePre(this.root);
         preNode.isright = false;
@@ -70,7 +71,6 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             }
             //前一个结点的右孩子如果为null则其现在可以更正为其后继结点
             //此时,前一个结点的后继结点就是p
-            System.out.println(preNode != null && preNode.right == null);
             if(preNode != null && preNode.right == null){
                 preNode.right  = p;
                 preNode.isright = false;
@@ -83,12 +83,52 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         }
     }
 
+    @Override
     public void toClueBinaryTreeIn() {
+        this.toClueBinaryTreeIn(this.root);
+        preNode.isright = false;
+        preNode = null;
+    }
 
+    //中序线索化递归执行单元
+    private void toClueBinaryTreeIn(clueBinaryNode<T> p) {
+        if(p != null) {
+            this.toClueBinaryTreeIn(p.left);
+            if(p.left == null){
+                p.left = preNode;
+                p.isleft = false;
+            }
+            System.out.println(preNode != null && preNode.right == null);
+            if(preNode != null && preNode.right == null){
+                preNode.right = p;
+                preNode.isright = false;
+            }
+            preNode = p;
+            this.toClueBinaryTreeIn(p.right);
+        }
     }
 
     @Override
     public void toClueBinaryTreePost() {
+        this.toClueBinaryTreePost(this.root);
+        preNode = null;
+    }
+
+    private void toClueBinaryTreePost(clueBinaryNode<T> p) {
+        if (p != null) {
+            this.toClueBinaryTreePost(p.left);
+            this.toClueBinaryTreePost(p.right);
+            if(p.left == null){
+                p.left = preNode;
+                p.isleft = false;
+            }
+            System.out.println(preNode != null && preNode.right == null);
+            if(preNode != null && preNode.right == null){
+                preNode.right = p;
+                preNode.isright = false;
+            }
+            preNode = p;
+        }
     }
 
     public binaryNode<T> getParent(clueBinaryNode<T> child) {
@@ -130,7 +170,6 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
     @Override
     public void preorder() {
         // TODO Auto-generated method stub
-        
     }
 
     @Override

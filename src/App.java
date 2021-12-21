@@ -16,6 +16,6 @@ public class App {
         originaltree.postorder();
         clueBinaryTree<String> clueTree = new clueBinaryTree<String>(originaltree);
         clueTree.initialize(originaltree);
-        clueTree.toClueBinaryTreePre();
+        clueTree.toClueBinaryTreePost();
     }
 }
