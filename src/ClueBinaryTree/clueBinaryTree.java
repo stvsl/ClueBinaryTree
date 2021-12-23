@@ -8,8 +8,12 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
     // 二叉树根结点
     clueBinaryNode<T> root = null;
 
-    // 构造线索二叉树时以及后续线索遍历时记录其前一个结点
+    // 构造线索二叉树时记录其前一个结点
     clueBinaryNode<T> preNode = null;
+
+    //线索二叉树长度
+    //进行线索二叉树后序遍历时临时栈长度
+    int length = 0;
 
     /***
      * 状态控制器
@@ -34,16 +38,22 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     /***
      * 线索二叉树初始化 <br>
-     * 通过后序对其进行初始化
+     * 通过先序对其进行初始化
      * 二次调用可以清空树的线索使其可以被重新线索化
      * 
      * @param tree 要线索化的树
      */
     public void initialize(binaryTree<T> tree) {
+        this.length = 0;
         if (tree.root != null) {
+            this.length++;
             this.root = new clueBinaryNode<T>(tree.root);
-            this.root.left = initialize(tree.root.left);
-            this.root.right = initialize(tree.root.right);
+            if(tree.root.left != null){
+                this.root.left = initialize(tree.root.left);
+            }
+            if(tree.root.right != null){
+                this.root.right = initialize(tree.root.right);
+            }
         }
         this.status = 0;
     }
@@ -52,17 +62,17 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
      * 线索二叉树初始化递归单元
      * 
      * @param p
-     * @return
      */
     private clueBinaryNode<T> initialize(binaryNode<T> p) {
-        clueBinaryNode<T> tmp = new clueBinaryNode<T>(p.data);
-        if (p != null && p.left != null && p.data != null) {
-            tmp.left = initialize(p.left);
-        }
-        if (p != null && p.right != null && p.data != null) {
-            tmp.right = initialize(p.right);
-        }
-        return tmp;
+            this.length++;
+            clueBinaryNode<T> tmp = new clueBinaryNode<T>(p.data);
+            if (p.left != null) {
+                tmp.left = initialize(p.left);
+            }
+            if (p.right != null) {
+                tmp.right = initialize(p.right);
+            }
+            return tmp;
     }
 
     @Override
@@ -173,8 +183,7 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.length;
     }
 
     @Override
@@ -258,43 +267,31 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             //不返回调用跳出
             return;
         }
+        //临时存储栈(临时存放倒序结果)
+        Object[] result = new Object[this.length];
+        int status = 0;
+        //逆向遍历操作,由于后续遍历相当于对每个结点进行左右自身的遍历,则其逆向就是自身右左遍历
+        //根据其分析可以发现对于此步骤自身与右可以合并同时处理,对所有结点进行相同处理即可
+        //将遍历结果存储到简易栈内等待循环结束后输出即可
         clueBinaryNode<T> p  = this.root;
-        // while(p != null){
-        //     //先找到最左面结点,其不能指向它的前驱,防止死循环
-        //     while(p.left != preNode && p.isleft){
-        //         p = p.left;
-        //     }
-        //     //访问后继结点
-        //     while(p != null && p.isright){
-        //         System.out.print(p.data.toString() + "\t");
-        //         preNode = p;
-        //         p = p.right;
-        //     }
-        //     //判断此时p是否指向根结点,如果指向说明遍历结束
-        //     if(p == root){
-        //         System.out.println(p.data.toString());
-        //         break;
-        //     }
-        //     while(p != null && p.right == preNode){
-        //         System.out.print(p.data.toString() + "\t");
-        //         preNode = p;
-        //         p = this.getParent(p);
-        //     }
-        //     if(p != null && p.isright){
-        //         p = p.right;
-        //     }
-        // }
         while(p != null) {
-            while(p != null && p.isright){
-                System.out.print(p.data.toString() + "\t");
+            //遍历自身与右子树
+            while(p != null && p.isright && p.right != null){
+                result[status++] = p.data;
                 p = p.right;
             }
-            System.out.print(p.data.toString() + "\t");
+            //设计缺陷弥补
+            result[status++] = p.data;
+            //对其遍历左子树
             while(p.left!= null && !p.isleft){
                 p = p.left;
-                System.out.print(p.data.toString() + "\t");
+                result[status++] = p.data;
             }
             p = p.left;
+        }
+        //直接从后向前输出,随后交给jvm一并进行垃圾回收
+        for(int i = status-1;i >= 0;i--){
+            System.out.print(result[i].toString() + "\t");
         }
         System.out.println();
     }
