@@ -228,6 +228,14 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         }
     }
 
+    /***
+     * 搜索某个指定元素
+     * @deprecated 
+     * 此方法以废弃,不建议使用
+     * 由于线索二叉树的特性,此方法已经废弃,请勿使用,如果你想用此方法,请尝试使用以下替代方法<br>
+     * 1. 使用getParent或getChild来替代相关功能.<br>
+     * 2. 使用原来的binaryTree替代相关功能实现,此线索二叉树并不是基于结点映射设计的.
+     */
     public binaryNode<T> search(T key) {
         System.out.print("操作非法!!!" + getParent(key));
         return null;
