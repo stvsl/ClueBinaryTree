@@ -221,13 +221,7 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
    
        @Override
        public int height() {
-           if (root == null) {
-               return 0;
-           } else {
-               int l = this.height(root.left);
-               int r = this.height(root.right);
-               return l > r ? l + 1 : r + 1;
-           }
+            return this.height(this.root);
        }
        
        private int height(binaryNode<T> root) {
@@ -304,10 +298,10 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
                if (p.isLeaf()) {
                    sum++;
                } else {
-                   if (p.left == null) {
+                   if (p.left != null) {
                        que.add(p.left);
                    }
-                   if (p.right == null) {
+                   if (p.right != null) {
                        que.add(p.right);
                    }
                }

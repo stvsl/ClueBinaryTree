@@ -1,5 +1,9 @@
 package ClueBinaryTree;
 
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import BinaryTree.binaryNode;
 import BinaryTree.binaryTree;
 
@@ -163,9 +167,26 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
      * 非正常继承继承
      * 获取其双亲结点
      */
-    public clueBinaryNode<T> getParent(clueBinaryNode<T> child) {
-        // TODO Auto-generated method stub
-        return null;
+    public T getParent(T data) {
+           Stack<clueBinaryNode<T>> stack = new Stack<clueBinaryNode<T>>();
+           clueBinaryNode<T> p = this.root;
+           while (p != null || !stack.isEmpty()) {
+               if (p != null) {
+                   if (p.left.data.equals(data)) {
+                       preNode = p;
+                       break;
+                   } else {
+                       stack.push(p);
+                       p = p.left;
+                   }
+               } else {
+                   p = stack.pop();
+                   p = p.right;
+               }
+           }
+           T elereturn = preNode.data;
+           preNode = null;
+           return elereturn;
     }
 
     public clueBinaryNode<T> getChild(clueBinaryNode<T> parent, boolean isLChild) {
@@ -188,13 +209,27 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     @Override
     public int height() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.height(this.root);
     }
 
-    @Override
+    //计算二叉树高度递归调用单元
+    private int height(clueBinaryNode<T> p) {
+        if (p == null) {
+           return 0;
+        } else {
+            int l = 0,r = 0;
+            if(p.isleft){
+                l = this.height(p.left);
+            }
+            if(p.isright){
+                r = this.height(p.right);
+            }
+            return l > r ? l + 1 : r + 1;
+        }
+    }
+
     public binaryNode<T> search(T key) {
-        // TODO Auto-generated method stub
+        System.out.print("操作非法!!!" + getParent(key));
         return null;
     }
 
@@ -298,14 +333,53 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     @Override
     public int leaf() {
-        // TODO Auto-generated method stub
-        return 0;
+        if (root == null) {
+            return 0;
+        }
+        Queue<clueBinaryNode<T>> que = new LinkedBlockingQueue<clueBinaryNode<T>>();
+        que.add(root);
+        int sum = 0;
+        clueBinaryNode<T> p;
+        while (!que.isEmpty()) {
+            p = que.poll();
+            if (p.isLeaf()) {
+                sum++;
+            } else {
+                if (p.isleft && p.left != null) {
+                    que.add(p.left);
+                }
+                if (p.isright && p.right != null) {
+                    que.add(p.right);
+                }
+            }
+        }
+        return sum;
     }
 
     @Override
     public int level(T key) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (key == null) {
+            return -1;
+        } else{
+            return this.level(root, key);
+        }
     }
 
+    //查找指定元素所在层次递归执行单元
+    private int level(clueBinaryNode<T> p, T key) {
+        if (p == null) {
+            return 0;
+        } else if (key.equals(p.data)) {
+            return 1;
+        } else {
+            int l = 0;int r = 0;
+            if(p.isleft){
+                l = this.level(p.left, key);
+            }
+            if(p.isright){
+                r = this.level(p.right, key);
+            }
+            return l > r ? l + 1 : r + 1;
+        }
+    }
 }
