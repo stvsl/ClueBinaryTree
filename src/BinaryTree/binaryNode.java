@@ -1,8 +1,8 @@
 package BinaryTree;
 
-/***
+/**********************************
  * 标准二叉树结点类
- */
+ **********************************/
 public class binaryNode<T> {
     public T data;
     public binaryNode<T> left;

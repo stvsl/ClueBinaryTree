@@ -235,7 +235,7 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
        }
    
        @Override
-       public binaryNode<T> search(T key) {
+       public T search(T key) {
            Stack<binaryNode<T>> stack = new Stack<binaryNode<T>>();
            binaryNode<T> p = this.root;
            binaryNode<T> target = null;
@@ -252,7 +252,7 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
                    p = p.right;
                }
            }
-           return target;
+           return target.data;
        }
    
        @Override

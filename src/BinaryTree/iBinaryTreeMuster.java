@@ -27,7 +27,7 @@ public interface iBinaryTreeMuster<T> {
      /*** 
       * 查找并返回首个与key元素相等的结点
       */ 
-     binaryNode<T> search(T key);
+     T search(T key);
  
      /***
       * 返回查找并返回首个与key元素相等的结点的所在层次

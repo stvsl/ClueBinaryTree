@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainApp",
+            "request": "launch",
+            "mainClass": "MainApp",
+            "projectName": "ClueBinaryTree_21b7db5b"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
