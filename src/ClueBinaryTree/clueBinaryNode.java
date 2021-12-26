@@ -8,6 +8,7 @@ import BinaryTree.binaryNode;
  * @param data    数据域
  * @param left    左子树
  * @param right   右子树
+ * @param parent  父结点
  * @param isleft  是否是左孩子,默认为true
  * @param isright 是否是右孩子,默认为true
  * @author stvsl
@@ -22,6 +23,8 @@ public class clueBinaryNode<T> {
     clueBinaryNode<T> left;
     // 右子数
     clueBinaryNode<T> right;
+    //后序线索二叉树使用
+    clueBinaryNode<T> parent;
     // 左子树判定
     boolean isleft;
     // 右子数判定

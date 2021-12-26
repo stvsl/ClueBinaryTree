@@ -91,6 +91,9 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     // 先序线索化递归执行单元
     private void toClueBinaryTreePre(clueBinaryNode<T> p) {
+        if(status != 0) {
+            return;
+        }
         if (p != null) {
             // 先序线索化时会因p的左右子树发生变化导致进入死循环,所以需要先保存p的左右孩子
             clueBinaryNode<T> tmpl = p.left;
@@ -116,6 +119,9 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     @Override
     public void toClueBinaryTreeIn() {
+        if(status != 0) {
+            return;
+        }
         this.toClueBinaryTreeIn(this.root);
         // 结束递归后,最后的结点的右指针变更为false,其表示它的后继为null
         preNode.isright = false;
@@ -142,6 +148,9 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     @Override
     public void toClueBinaryTreePost() {
+        if(status != 0) {
+            return;
+        }
         this.toClueBinaryTreePost(this.root);
         preNode = null;
         this.status = 3;
@@ -151,6 +160,12 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         if (p != null) {
             this.toClueBinaryTreePost(p.left);
             this.toClueBinaryTreePost(p.right);
+            if(p.left != null) {
+                p.left.parent = p;
+            }
+            if(p.right != null) {
+                p.right.parent = p;
+            }
             if (p.left == null) {
                 p.left = preNode;
                 p.isleft = false;
@@ -261,31 +276,34 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             System.out.println("遍历错误,当前不是先序线索二叉树");
             // 不返回调用跳出
         }
+        String result = "";
         clueBinaryNode<T> p = this.root;
         // 循环遍历部分
         while (p != null) {
             // 从根结点开始遍历,直到到达最左面第一个结点
             while (p.left != null && p.isleft) {
                 System.out.print(p.data.toString() + "\t");
+                result += p.data.toString() + "\t";
                 p = p.left;
             }
             // 设计缺陷弥补,结点data未访问
             System.out.print(p.data.toString() + "\t");
+            result += p.data.toString() + "\t";
             // 此时,如果右子树不是右孩子,则说明是其后继,直接前往
             if (!p.isright) {
                 p = p.right;
             }
-            //
             while (p != null) {
                 if (p.isleft) {
                     break;
                 }
                 System.out.print(p.data.toString() + "\t");
+                result += p.data.toString() + "\t";
                 p = p.right;
             }
         }
         System.out.println();
-        return "das";
+        return result;
     }
 
     @Override
@@ -295,6 +313,7 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             // 不返回调用跳出
             return "ERROR";
         }
+        String result = "";
         clueBinaryNode<T> p = this.root;
         while (p != null && p.isleft) {
             p = p.left;
@@ -302,12 +321,14 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         while (p != null) {
             // 先找到最左面的第一个结点(中序遍历从此开始)    
             System.out.print(p.data.toString() + "\t");
+            result += p.data.toString() + "\t";
             // 循环遍历部分
             // 在左子树没有时,一直遍历读取右子树
             // 由于当右孩子没有时右孩子指针指向下一个元素的位置,所以不必去寻找此位置,直接访问即可
             p = p.right;
             while (p != null && p.isright) {
                 System.out.print(p.data.toString() + "\t");
+                result += p.data.toString() + "\t";
                 p = p.right;
                 while (p != null && p.isleft) {
                     p = p.left;
@@ -315,7 +336,7 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             }
         }
         System.out.println();
-        return "";
+        return result;
     }
 
     @Override
@@ -345,14 +366,54 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
                 p = p.left;
                 result[status++] = p.data;
             }
-            p = p.left;
+            p = p.left;           
+
         }
+        String tmp = "";
         // 直接从后向前输出,随后交给jvm一并进行垃圾回收
         for (int i = status - 1; i >= 0; i--) {
             System.out.print(result[i].toString() + "\t");
+            tmp += result[i].toString() + "\t";
         }
         System.out.println();
-        return "";
+        return tmp;
+    }
+
+    public String postorder2(){
+        String result = "";
+        clueBinaryNode<T> p = this.root;
+        //寻找开始结点
+        while(p!= null && p.isleft){
+            p = p.left;
+        }
+        preNode = null;
+        while(p != null){
+            //如果右边是线索
+            if(!p.isright){
+                result += p.data.toString() + "\t";
+                System.out.print(p.data.toString() + "\t");
+                preNode = p;
+                p = p.right;
+            }else{
+                //如果上个处理的结点是当前结点的右结点
+                if(p.right == preNode){
+                    System.out.print(p.data.toString() + "\t");
+                    result += p.data.toString() + "\t";
+                    if(p == root){
+                        break;
+                    }
+                    preNode = p;
+                    p = p.parent;
+                }else{
+                    p = p.right;
+                    while (p != null && p.isleft){
+                        p = p.left;
+                    }
+                }   
+            }
+        }
+        System.out.println();
+        return result;
     }
 
     @Override
@@ -360,14 +421,14 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
         if (root == null) {
             return 0;
         }
+        int sum = 0;
         Queue<clueBinaryNode<T>> que = new LinkedBlockingQueue<clueBinaryNode<T>>();
         que.add(root);
-        int sum = 0;
         clueBinaryNode<T> p;
         while (!que.isEmpty()) {
             p = que.poll();
             if (p.isLeaf()) {
-                sum++;
+                sum = sum + 1;
             } else {
                 if (p.isleft && p.left != null) {
                     que.add(p.left);
