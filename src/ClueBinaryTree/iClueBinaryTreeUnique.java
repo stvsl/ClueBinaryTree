@@ -8,17 +8,17 @@ public interface iClueBinaryTreeUnique <T>{
     /***
      * 先根序遍历
      */
-    void preorder();
+    String preorder();
 
     /*** 
      * 中根序遍历
      */
-    void inorder();
+    String inorder();
 
     /*** 
      * 后根序遍历
      */
-    void postorder();
+    String postorder();
 
     /***
      * 先序线索化

@@ -256,11 +256,10 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
     }
 
     @Override
-    public void preorder() {
+    public String preorder() {
         if (this.status != 1) {
             System.out.println("遍历错误,当前不是先序线索二叉树");
             // 不返回调用跳出
-            return;
         }
         clueBinaryNode<T> p = this.root;
         // 循环遍历部分
@@ -286,14 +285,15 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             }
         }
         System.out.println();
+        return "das";
     }
 
     @Override
-    public void inorder() {
+    public String inorder() {
         if (this.status != 2) {
             System.out.println("遍历错误,当前不是中序线索二叉树");
             // 不返回调用跳出
-            return;
+            return "ERROR";
         }
         clueBinaryNode<T> p = this.root;
         while (p != null && p.isleft) {
@@ -315,14 +315,15 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             }
         }
         System.out.println();
+        return "";
     }
 
     @Override
-    public void postorder() {
+    public String postorder() {
         if (this.status != 3) {
             System.out.println("遍历错误,当前不是后序线索二叉树");
             // 不返回调用跳出
-            return;
+            return "ERROR";
         }
         // 临时存储栈(临时存放倒序结果)
         Object[] result = new Object[this.length];
@@ -351,6 +352,7 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
             System.out.print(result[i].toString() + "\t");
         }
         System.out.println();
+        return "";
     }
 
     @Override

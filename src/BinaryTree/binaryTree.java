@@ -7,6 +7,8 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
     /* 此树为二叉链表实现 */
        public binaryNode<T> root = null;
 
+       public String result = "";
+
        // 无参构造
        public binaryTree() {
    
@@ -125,45 +127,55 @@ public class binaryTree <T> implements iBinaryTreeMuster<T>, iBinaryTreeOperate<
        }
    
        @Override
-       public void preorder() {
-           preorder(this.root);
-           System.out.println();
+       public String preorder() {
+            result = "";
+            preorder(this.root);
+            System.out.println();
+            return result;
        }
    
        @Override
-       public void inorder() {
+       public String inorder() {
+           result = "";
            inorder(this.root);
            System.out.println();
+           return result;
        }
    
        @Override
-       public void postorder() {
+       public String postorder() {
+           result = "";
            postorder(this.root);
            System.out.println();
+           return result;
        }
    
        private void preorder(binaryNode<T> p) {
            if (p != null) {
                System.out.print(p.data.toString() + "\t");
+               result += p.data.toString() + "\t";
                preorder(p.left);
                preorder(p.right);
            }
        }
    
-       private void inorder(binaryNode<T> p) {
+       private String inorder(binaryNode<T> p) {
            if (p != null) {
                inorder(p.left);
                System.out.print(p.data.toString() + "\t");
+               result += p.data.toString() + "\t";
                inorder(p.right);
            }
+           return result;
        }
    
        private void postorder(binaryNode<T> p) {
            if (p != null) {
-               postorder(p.left);
-               postorder(p.right);
-               System.out.print(p.data.toString() + "\t");
-           }
+                postorder(p.left);
+                postorder(p.right);
+                System.out.print(p.data.toString() + "\t");
+                result += p.data.toString() + "\t";
+            }
        }
    
        @Override

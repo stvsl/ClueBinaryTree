@@ -22,13 +22,13 @@ public interface iBinaryTreeUnique<T> {
         binaryNode<T> getChild(binaryNode<T> parent, boolean isLChild);
 
         // 先根序遍历
-        void preorder();
+        String preorder();
 
         // 中根序遍历
-        void inorder();
+        String inorder();
 
         // 后根序遍历
-        void postorder();
+        String postorder();
 
         // 先根序遍历非递归
         void preorderTraverse();
