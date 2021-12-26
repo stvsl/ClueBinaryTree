@@ -1,0 +1,38 @@
+.root{
+  -fx-background-color:#ffffff
+}
+
+.button{
+  -fx-background-color: linear-gradient(to bottom,#1f8fe8,#1f8fe7);
+  -fx-background-radius: 3 3 3 3;
+  -fx-text-fill: #f8f5f5;
+  -fx-background-insets: 0 0 0 0, 0, 1, 2;
+  -fx-border-radius: 5;
+  -fx-padding: 3 6 6 6;
+}
+
+.button:pressed{
+  -fx-background-color: linear-gradient(to bottom,#0e85e7,#0381e0);
+  -fx-background-radius: 3 3 3 3;
+  -fx-text-fill: #c3bfbf;
+  -fx-background-insets: 0 0 0 0, 0, 1, 2;
+  -fx-border-radius: 5;
+  -fx-padding: 3 6 6 6;
+}
+
+.text-field{
+  -fx-background-color: transparent;
+  -fx-background-color:  #0c0c0c,#ffffff -fx-background ;
+  -fx-background-insets:  4 4 0 4, 2,0,0,0,1 ;
+}
+
+.text-field:focus{
+  -fx-background-color: transparent;
+  -fx-background-color:  #244cff,#ffffff -fx-background ;
+  -fx-background-insets:  4 4 0 4, 2,0,0,0,1 ;
+}
+
+.list-view{
+  -fx-background-insets: 0;
+  -fx-padding: 0; 
+}

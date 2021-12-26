@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx-swt.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.web.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.swing.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.media.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.graphics.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.fxml.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.controls.jar",
+        "/home/stvsl/Documents/Java/数据结构/课设/ClueBinaryTree/lib/javafx.base.jar"
+    ]
+}

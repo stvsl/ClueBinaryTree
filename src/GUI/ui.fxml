@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="689.0" stylesheets="@ui.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.uiCtrl">
+   <children>
+      <Label layoutX="36.0" layoutY="26.0" prefHeight="28.0" prefWidth="201.0" text="请输入二叉树先序序列">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField id="buildText" fx:id="inittext" layoutX="36.0" layoutY="65.0" prefHeight="31.0" prefWidth="334.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button id="buildbinarytree" fx:id="buildbinarytree" layoutX="414.0" layoutY="56.0" mnemonicParsing="false" onAction="#binarytreebuilder" prefHeight="42.0" prefWidth="120.0" text="构建二叉树并遍历" />
+      <Button id="initClueBinaryTree" fx:id="initcluetreebtn" layoutX="545.0" layoutY="56.0" mnemonicParsing="false" onAction="#initClueBinaryTree" prefHeight="42.0" prefWidth="120.0" text="初始化线索二叉树" />
+      <VBox layoutX="414.0" layoutY="120.0" prefHeight="133.0" prefWidth="120.0">
+         <children>
+            <Button id="initpre" fx:id="topre" disable="true" mnemonicParsing="false" onAction="#toClueBinaryTreePre" prefHeight="30.0" prefWidth="120.0" text="先序线索二叉树">
+               <opaqueInsets>
+                  <Insets bottom="5.0" />
+               </opaqueInsets>
+            </Button>
+            <Button id="initin" fx:id="toin" disable="true" mnemonicParsing="false" onAction="#toClueBinaryTreeIn" prefHeight="30.0" prefWidth="120.0" text="中序线索二叉树">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Button>
+            <Button id="initpost" fx:id="topost" disable="true" mnemonicParsing="false" onAction="#toClueBinaryTreePost" prefHeight="30.0" prefWidth="120.0" text="后序线索二叉树">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+      <HBox layoutX="36.0" layoutY="337.0" prefHeight="55.0" prefWidth="334.0">
+         <children>
+            <Button fx:id="preload1" mnemonicParsing="false" onAction="#preload1data" prefHeight="33.0" prefWidth="77.0" text="预装载1">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button fx:id="preload2" mnemonicParsing="false" onAction="#preload2data" prefHeight="33.0" prefWidth="77.0" text="预装载2">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="preload3" mnemonicParsing="false" onAction="#preload3data" prefHeight="33.0" prefWidth="77.0" text="预装载3">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="preload4" mnemonicParsing="false" onAction="#preload4data" prefHeight="33.0" prefWidth="77.0" text="预装载4">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TextField id="buildText" fx:id="clueorder" editable="false" layoutX="36.0" layoutY="288.0" prefHeight="31.0" prefWidth="334.0" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ListView fx:id="binarytreeresult" layoutX="37.0" layoutY="107.0" prefHeight="154.0" prefWidth="334.0" />
+      <Button id="clueit" fx:id="orderit" disable="true" layoutX="555.0" layoutY="131.0" mnemonicParsing="false" onAction="#orderClueBinaryTree" prefHeight="55.0" prefWidth="100.0" text="遍历">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchbtn" disable="true" layoutX="415.0" layoutY="261.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" text="查询元素所在层次" />
+      <HBox layoutX="414.0" layoutY="310.0" prefHeight="97.0" prefWidth="242.0">
+         <children>
+            <VBox fx:id="information" prefHeight="55.0" prefWidth="121.0">
+               <children>
+                  <Label text="线索二叉树相关信息" textFill="#31c6ef" />
+                  <Label prefHeight="25.0" prefWidth="119.0" text="大小:" textAlignment="RIGHT" />
+                  <Label prefHeight="25.0" prefWidth="119.0" text="高度:" textAlignment="RIGHT" />
+                  <Label fx:id="leaftext" prefHeight="25.0" prefWidth="119.0" text="叶子数:" textAlignment="RIGHT" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="98.0" prefWidth="103.0">
+               <children>
+                  <Label textFill="#31c6ef" />
+                  <Label fx:id="size" prefHeight="25.0" prefWidth="119.0" textAlignment="RIGHT" />
+                  <Label fx:id="height" prefHeight="25.0" prefWidth="119.0" textAlignment="RIGHT" />
+                  <Label fx:id="leaf" prefHeight="25.0" prefWidth="119.0" textAlignment="RIGHT" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label layoutX="44.0" layoutY="398.0" prefHeight="18.0" prefWidth="149.0" text="write by stvsl" textFill="#6db0fc" />
+      <TextField fx:id="searchtext" layoutX="484.0" layoutY="263.0" prefHeight="26.0" prefWidth="171.0" visible="false" />
+      <Button fx:id="spacecomplex" disable="true" layoutX="555.0" layoutY="203.0" mnemonicParsing="false" onAction="#spaceComplexChange" prefHeight="25.0" prefWidth="100.0" text="空间简单" />
+      <Label fx:id="searchresult" layoutX="555.0" layoutY="261.0" prefHeight="30.0" prefWidth="100.0" visible="false" />
+   </children>
+</Pane>
