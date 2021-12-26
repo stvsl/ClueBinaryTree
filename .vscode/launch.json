@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Launch MainApp",
             "request": "launch",
+            "mainClass": "GUI.MainApp",
+            "projectName": "ClueBinaryTree_21b7db5b"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainApp",
+            "request": "launch",
             "mainClass": "MainApp",
             "projectName": "ClueBinaryTree_21b7db5b"
         },

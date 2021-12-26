@@ -452,17 +452,17 @@ public class clueBinaryTree<T> extends binaryTree<T> implements iClueBinaryTreeU
 
     // 查找指定元素所在层次递归执行单元
     private int level(clueBinaryNode<T> p, T key) {
-        if (p == null) {
+        if (key == null) {
+            return -1;
+        } else if (p == null) {
             return 0;
         } else if (key.equals(p.data)) {
             return 1;
         } else {
-            int l = 0;
-            int r = 0;
-            if (p.isleft) {
+            int l = 0,r = 0;
+            if(p.left != null && p.isleft){
                 l = this.level(p.left, key);
-            }
-            if (p.isright) {
+            }if(p.right != null && p.isright){
                 r = this.level(p.right, key);
             }
             return l > r ? l + 1 : r + 1;
